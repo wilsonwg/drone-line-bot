@@ -23,7 +23,7 @@ const client = new Client({
 if (process.env.DRONE_BUILD_STATUS && process.env.DRONE_BUILD_STATUS != null){
     client.broadcast({
         type: 'text',
-        text: `[${process.env.DRONE_BUILD_STATUS}] (${process.env.DRONE_COMMIT_BRANCH}) "${process.env.DRONE_COMMIT_MESSAGE}" by ${process.env.DRONE_COMMIT_AUTHOR}`,
+        text: `[${process.env.DRONE_BUILD_STATUS}] ${process.env.DRONE_REPO} (${process.env.DRONE_COMMIT_BRANCH}) "${process.env.DRONE_COMMIT_MESSAGE}" by ${process.env.DRONE_COMMIT_AUTHOR}`,
       })
       .catch(e => console.log(e));
 }

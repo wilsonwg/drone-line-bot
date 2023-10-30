@@ -12,12 +12,25 @@ const client = new MessagingApiClient({
 //   .catch((e) => console.log(e));
 
 if (process.env.DRONE_BUILD_STATUS && process.env.DRONE_BUILD_STATUS != null) {
+  if (process.env.DRONE_BUILD_STATUS === "failure") {
+    client
+      .broadcast({
+        messages: [
+          {
+            type: "text",
+            text: `${process.env.DRONE_REPO} (${process.env.DRONE_COMMIT_BRANCH}) - Buid #${process.env.DRONE_BUILD_NUMBER}: "${process.env.DRONE_COMMIT_MESSAGE}". Status: [${process.env.DRONE_BUILD_STATUS}] Commited By ${process.env.DRONE_COMMIT_AUTHOR_NAME} 😮`,
+          },
+        ],
+      })
+      .catch((e) => console.log(e));
+  }
+
   client
     .broadcast({
       messages: [
         {
           type: "text",
-          text: `${process.env.DRONE_REPO} (${process.env.DRONE_COMMIT_BRANCH}) [${process.env.DRONE_COMMIT_SHA}] [${process.env.DRONE_BUILD_STATUS}]: "${process.env.DRONE_COMMIT_MESSAGE}" by ${process.env.DRONE_COMMIT_AUTHOR_NAME}`,
+          text: `${process.env.DRONE_REPO} (${process.env.DRONE_COMMIT_BRANCH}) - Buid #${process.env.DRONE_BUILD_NUMBER}: "${process.env.DRONE_COMMIT_MESSAGE}". Status: [${process.env.DRONE_BUILD_STATUS}] Commited By ${process.env.DRONE_COMMIT_AUTHOR_NAME} 🎉`,
         },
       ],
     })

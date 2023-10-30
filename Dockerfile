@@ -12,7 +12,7 @@ COPY package*.json ./
 RUN npm install
 
 #Copy build files
-COPY app.js .
+COPY index.js .
 EXPOSE 80
 
-CMD [ "node", "app.js" ]
+CMD [ "npm", "start" ]

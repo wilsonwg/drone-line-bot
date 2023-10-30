@@ -3,7 +3,7 @@ const MessagingApiClient =
 require("dotenv").config();
 
 const client = new MessagingApiClient({
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
+  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
 });
 
 // client

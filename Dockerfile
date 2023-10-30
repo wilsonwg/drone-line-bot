@@ -15,4 +15,4 @@ RUN npm install
 COPY index.js .
 EXPOSE 80
 
-CMD [ "npm", "start" ]
+CMD [ "node", "app.js" ]
